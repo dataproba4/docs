@@ -1,0 +1,86 @@
+---
+title: 'Enviando Dados'
+description: 'Como enviar dados para plataforma'
+---
+
+## Campos por produto
+
+> Siga as instruções abaixo por produto para garantir que os dados serão recepcionados.
+
+<AccordionGroup>
+  <Accordion icon="calendar" title="No Show">
+    Veja abaixo o mapeamento dos campos, sendo o nome na requisiçao e o detalhe do campo.
+    - customer_gender: Gênero
+    - customer_birthdate: Data de Nascimento
+    - service_type: Tipo de atendimento (Presencial, Remoto)
+    - service_level: Nível de atendimento (Consulta, Teste, Exame, etc.)
+    - appointment_timestamp: Data que o evento está agendado (Ex.: 2026-01-01 23:59:59)
+    - appointment_zipcode: CEP que o evento está agendado
+    - customer_zipcode: CEP do cliente que agendou o evento
+    - customer_appointment_last: Lista de datas que o cliente agendou no passado (Ex.: 2025-01-01, 2025-01-02, 2024-03-12)
+  </Accordion>
+  <Accordion icon="bullseye" title="NPS">
+    Veja abaixo o mapeamento dos campos, sendo o nome na requisiçao e o detalhe do campo.
+    - customer_gender: Gênero
+    - customer_birthdate: Data de Nascimento
+    - service_type: Tipo de atendimento (Presencial, Remoto)
+    - service_level: Nível de atendimento (Consulta, Teste, Exame, etc.)
+    - event_timestamp: Data que o evento ocorreu (Ex.: 2026-01-01 23:59:59)
+    - customer_zipcode: CEP do cliente
+    - service_range_answer: Classificação informada (ex.: 3 estrelas)
+    - service_text_answer: Texto informado pelo cliente
+  </Accordion>
+</AccordionGroup>
+
+
+## Callback
+
+> Callback, também comumente conhecido como notificação, este recurso permite que nossa API chame uma outra API para enviar o retorno caso o mesmo demore.
+
+A API de retorno/callback deve estar preparada para receber as mesmas informações que o consumo do resultado detalhado na próxima página (Capturando Retorno)
+
+## Exemplo de uma requisição
+
+### NoShow
+
+- HTTP: POST 
+- Endpoint: /noshow 
+- Header: Authorization `seu token de acesso`
+- Header: callbackres `url da sua API de callback`
+- Body: 
+- **202 OK**: Id da requisição.
+```json
+  {
+    "customer_gender": "male",
+    "customer_birthdate": "1990-01-12",
+    "service_type": "presencial",
+    "service_level": "consulta",
+    "appointment_timestamp": "2026-01-01 23:59:59",
+    "appointment_zipcode": "01283123",
+    "customer_zipcode": "04213506",
+    "customer_appointment_last": "2025-01-01, 2025-01-02, 2024-03-12",
+  }
+```
+
+### NPS
+
+- HTTP: POST 
+- Endpoint: /nps 
+- Header: Authorization `seu token de acesso`
+- Header: callbackres `url da sua API de callback`
+- Body: 
+- **202 OK**: Id da requisição.
+```json
+  {
+    "customer_gender": "male",
+    "customer_birthdate": "1990-01-12",
+    "service_type": "presencial",
+    "service_level": "consulta",
+    "event_timestamp": "2026-01-01 23:59:59",
+    "customer_zipcode": "01283123",
+    "service_range_answer": "3",
+    "service_text_answer": " long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors",
+  }
+```
+
+  

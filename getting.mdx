@@ -1,0 +1,43 @@
+---
+title: 'Capturando retorno'
+description: 'Como capturar retorno das suas requisições'
+---
+
+
+## Como capturar o retorno de requisições
+
+### NoShow
+
+- HTTP: GET 
+- Endpoint: /noshow 
+- Header: Authorization `seu token de acesso`
+- Parâmetro: id da requisição
+- Exemplo de retorno: 
+- **200 OK**
+```json
+  {
+    "id": "mesmo codigo informado no parâmetro",
+    "proba": 0 ou 1
+  }
+```
+- **Explicação**: Sempre que a plataforma identificar uma possível falta, será 1. Caso contrário 0.
+
+
+### NPS
+
+- HTTP: GET 
+- Endpoint: /nps 
+- Header: Authorization `seu token de acesso`
+- Parâmetro: id da requisição
+- Exemplo de retorno: 
+- **200 OK**
+```json
+  {
+    "id": "mesmo codigo informado no parâmetro",
+    "proba": 0 ou 1
+  }
+```
+- **Explicação**: Sempre que a plataforma identificar um atendimento **bom**, será 1. Caso contrário 0.
+
+
+  
